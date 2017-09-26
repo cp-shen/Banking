@@ -7,11 +7,12 @@ package banking.domain;
 public class Bank{
     private Customer[] customers = null ;
     private int numberOfCustomers =0 ;
+    private static Bank bankInstance = new Bank();
 
     /**
      * initializes the customers array with maximum size as 6
      */
-    public Bank(){
+    private Bank(){
         customers = new Customer[6];
     }
     public void addCustomer (String f , String l){
@@ -38,6 +39,10 @@ public class Bank{
      */
     public Customer getCustomer(int i) {
         return customers[i];
+    }
+
+    public static Bank getBank(){
+        return bankInstance;
     }
 }
 
