@@ -1,9 +1,8 @@
-package banking;
+package banking.domain;
 
 public class Account
 {
-    private double balance;
-
+    protected double balance;
 
     public Account(double init_balance)
     {
@@ -31,3 +30,4 @@ public class Account
             return false;
     }
 }
+

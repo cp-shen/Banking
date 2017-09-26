@@ -1,4 +1,4 @@
-package banking;
+package banking.domain;
 
 /**
  * @author BJTU16301130
