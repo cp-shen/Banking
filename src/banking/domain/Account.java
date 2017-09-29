@@ -19,15 +19,14 @@ public class Account
         balance += amount;
         return true;
     }
-    public boolean withdraw(double amount)
+    public void withdraw (double amount) throws OverdraftException
     {
         if (amount <= balance)
         {
             balance -= amount;
-            return true;
         }
         else
-            return false;
+            throw new OverdraftException("insufficient funds",amount - balance  );
     }
 }
 

@@ -1,32 +1,31 @@
 package banking.domain;
 
-import banking.domain.Account;
-
 /**
  * @author BJTU16301130
- * @version 201270922
+ * @version 201270929
  */
-public class CheckingAccount extends Account {
-        private double overdraftProtection;
-        public CheckingAccount(double balance){
-            super(balance);
+public class CheckingAccount extends Account{
+    private double overdraftProtection;
+    public CheckingAccount(double balance){
+        super(balance);
+    }
+    public CheckingAccount(double balance, double protect){
+        super(balance);
+        overdraftProtection = protect;
+    }
+    public void withdraw(double amt)throws OverdraftException{
+        if(balance >= amt){
+            balance -= amt;
         }
-        public CheckingAccount(double balance, double protect){
-            super(balance);
-            overdraftProtection = protect;
+        else if(balance + overdraftProtection >= amt){
+            overdraftProtection -= amt - balance;
+            balance = 0;
         }
-
-        public boolean withdraw(double amt){
-            if(balance >= amt){
-                balance -= amt;
-                return true;
-            }
-            else if(balance + overdraftProtection >= amt){
-                overdraftProtection -= amt - balance;
-                balance = 0;
-                return true;
-            }
-            else return false;
+        else if(overdraftProtection > 0){
+            throw new OverdraftException("Insufficient funds for overdraft protection", amt - balance - overdraftProtection);
+        }
+        else{
+            throw new OverdraftException("No overdraft protection", amt - balance );
         }
     }
-
+}

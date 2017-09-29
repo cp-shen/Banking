@@ -1,7 +1,5 @@
 package banking.domain;
 
-import banking.domain.Account;
-
 public class Customer
 {
     private String firstName , lastName;

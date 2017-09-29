@@ -13,26 +13,6 @@ public class CustomerReport {
         //ADD by ChenXD 2010.3.31,an example usage of currency_format，output ￥12.9
         //System.out.println(currency_format.format(12.9));
 
-        // Create several customers and their accounts
-        bank.addCustomer ("Jane", "Simms");
-        customer = bank.getCustomer (0);
-        customer.addAccount (new SavingsAccount (500.00, 0.05));
-        customer.addAccount (new CheckingAccount (200.00, 400.00));
-
-        bank.addCustomer ("Owen", "Bryant");
-        customer = bank.getCustomer (1);
-        customer.addAccount (new CheckingAccount (200.00));
-
-        bank.addCustomer ("Tim", "Soley");
-        customer = bank.getCustomer (2);
-        customer.addAccount (new SavingsAccount (1500.00, 0.05));
-        customer.addAccount (new CheckingAccount (200.00));
-
-        bank.addCustomer ("Maria", "Soley");
-        customer = bank.getCustomer (3);
-        // Maria and Tim have a shared checking account
-        customer.addAccount (bank.getCustomer (2).getAccount (1));
-        customer.addAccount (new SavingsAccount (150.00, 0.05));
 
         // Generate a report
         System.out.println ("\t\t\tCUSTOMERS REPORT");

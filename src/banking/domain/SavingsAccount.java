@@ -1,7 +1,5 @@
 package banking.domain;
 
-import banking.domain.Account;
-
 /**
  * @author BJTU16301130
  * @version 201270922
