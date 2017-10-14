@@ -1,11 +1,26 @@
 package banking.domain;
 
-public class Customer
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class Customer implements Comparable<Customer>
 {
     private String firstName , lastName;
+    private List<Account> accounts = null ;
 
-    private Account[] accounts = null ;
-    private int numberOfAccounts =0 ;
+    @Override
+    public int compareTo(Customer o) {
+        if(this.lastName.compareTo(o.lastName) > 0){
+            return 1;
+        }
+        else if(this.lastName.compareTo(o.lastName) < 0){
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
 
     public String getFirstName () {
         return firstName;
@@ -15,22 +30,18 @@ public class Customer
     }
 
     public void addAccount(Account account){
+        accounts.add(account);
+    }
 
-        //skip the existing account, place the new account in the array and update numberOfAccounts
-        int i = 0;
-        while (accounts[i] != null && i < accounts.length){
-            i++;
-        }
-        if (accounts[i] == null && i < accounts.length){
-            accounts[i] = account;
-            numberOfAccounts = i + 1;
-        }
-    }
     public Account getAccount(int i){
-        return accounts[i];
+        return accounts.get(i);
     }
+    public Iterator<Account> getAccounts(){
+        return accounts.iterator();
+    }
+
     public int getNumOfAccounts() {
-        return numberOfAccounts;
+        return accounts.size();
     }
 
     /**
@@ -42,6 +53,6 @@ public class Customer
     {
         firstName = f;
         lastName = l;
-        accounts = new Account[6];
+        accounts = new ArrayList<>();
     }
 }

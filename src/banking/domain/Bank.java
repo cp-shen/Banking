@@ -1,44 +1,46 @@
 package banking.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * @author BJTU16301130
- * @version 20170919
+ * @version 20171014
  */
 public class Bank{
-    private Customer[] customers = null ;
-    private int numberOfCustomers =0 ;
+    private List<Customer> customers = null ;
     private static Bank bankInstance = new Bank();
 
     /**
      * initializes the customers array with maximum size as 6
      */
     private Bank(){
-        customers = new Customer[6];
+        customers = new ArrayList<>();
     }
+
     public void addCustomer (String f , String l){
-
         Customer customer = new Customer(f,l);
-
-        //skip the existing customer, place the new customer in the array and update numberOfCustomers
-        int i = 0;
-        while (customers[i] != null && i < customers.length){
-            i++;
-        }
-        if (customers[i] == null && i < customers.length){
-        customers[i] = customer;
-        numberOfCustomers = i + 1;
-        }
+        customers.add(customer);
     }
 
     public int getNumOfCustomers() {
-        return numberOfCustomers;
+        return customers.size();
     }
 
     /**
      * @return  the customer associated with the given index parameter
      */
     public Customer getCustomer(int i) {
-        return customers[i];
+        return customers.get(i);
+    }
+    public Iterator<Customer> getCustomers(){
+        return customers.iterator();
+    }
+
+    public void sortCustomers(){
+        Collections.sort(customers);
     }
 
     public static Bank getBank(){

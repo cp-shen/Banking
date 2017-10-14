@@ -1,13 +1,19 @@
 package banking.reports;
 
 import banking.domain.*;
-
 import java.text.NumberFormat;
+import java.util.Iterator;
 
+/**
+ * @author BJTU16301130
+ * @version 20171014
+ */
 public class CustomerReport {
     public void generateReport() {
         NumberFormat currency_format = NumberFormat.getCurrencyInstance ();
         Bank bank = Bank.getBank ();
+        bank.sortCustomers();
+
         Customer customer;
 
         //ADD by ChenXD 2010.3.31,an example usage of currency_format，output ￥12.9
@@ -18,16 +24,18 @@ public class CustomerReport {
         System.out.println ("\t\t\tCUSTOMERS REPORT");
         System.out.println ("\t\t\t================");
 
-        for (int cust_idx = 0; cust_idx < bank.getNumOfCustomers (); cust_idx++) {
-            customer = bank.getCustomer (cust_idx);
+        Iterator<Customer> iterator = bank.getCustomers();
+        while (iterator.hasNext()){
+            customer = iterator.next();
 
             System.out.println ();
             System.out.println ("Customer: "
                     + customer.getLastName () + ", "
                     + customer.getFirstName ());
 
-            for (int acct_idx = 0; acct_idx < customer.getNumOfAccounts (); acct_idx++) {
-                Account account = customer.getAccount (acct_idx);
+            Iterator<Account> iterator1 = customer.getAccounts();
+            while(iterator1.hasNext()) {
+                Account account = iterator1.next();
                 String account_type = "";
 
 
