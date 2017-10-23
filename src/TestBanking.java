@@ -7,6 +7,11 @@
 import banking.domain.*;
 import banking.reports.CustomerReport;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+
 public class TestBanking {
 
     public static void main(String[] args) {
@@ -14,27 +19,32 @@ public class TestBanking {
         Customer customer;
         CustomerReport report = new CustomerReport();
 
-        // Create several customers and their accounts
-        bank.addCustomer("Jane", "Simms");
-        customer = bank.getCustomer(0);
-        customer.addAccount(new SavingsAccount(500.00, 0.05));
-        customer.addAccount(new CheckingAccount(200.00, 400.00));
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("accounts.txt"));
 
-        bank.addCustomer("Owen", "Bryant");
-        customer = bank.getCustomer(1);
-        customer.addAccount(new CheckingAccount(200.00));
+            //skip the first line
+            reader.readLine();
+            String got = reader.readLine();
+            int customerIndex = 0;
 
-        bank.addCustomer("Tim", "Soley");
-        customer = bank.getCustomer(2);
-        customer.addAccount(new SavingsAccount(1500.00, 0.05));
-        customer.addAccount(new CheckingAccount(200.00));
+            while(got != null && !got.trim().equals("")){
+                String[] contents = got.split("\t+");
 
-        bank.addCustomer("Maria", "Soley");
-        customer = bank.getCustomer(3);
-        // Maria and Tim have a shared checking account
-        customer.addAccount(bank.getCustomer(2).getAccount(1));
-        customer.addAccount(new SavingsAccount(150.00, 0.05));
+                bank.addCustomer(contents[1].trim(),contents[0].trim());
+                customer = bank.getCustomer(customerIndex);
 
+                if(!contents[2].trim().equals("null")){
+                    customer.addAccount(new SavingsAccount(Double.parseDouble(contents[2].trim()) , 0)  );
+                }
+                if(!contents[3].trim().equals("null")){
+                    customer.addAccount(new CheckingAccount(Double.parseDouble(contents[3].trim()), Double.parseDouble(contents[4].trim()) ));
+                }
+                customerIndex++;
+                got = reader.readLine();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
         // Generate a report
         report.generateReport();
     }
