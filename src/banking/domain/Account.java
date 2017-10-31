@@ -28,5 +28,10 @@ public class Account
         else
             throw new OverdraftException("insufficient funds",amount - balance  );
     }
+
+    @Override
+    public String toString(){
+        return "Account with a balance of " + new Double(balance).toString();
+    }
 }
 

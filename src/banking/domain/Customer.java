@@ -1,10 +1,11 @@
 package banking.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Customer implements Comparable<Customer>
+public class Customer implements Comparable<Customer>, Serializable
 {
     private String firstName , lastName;
     private List<Account> accounts = null ;
@@ -20,6 +21,11 @@ public class Customer implements Comparable<Customer>
         else {
             return 0;
         }
+    }
+
+    @Override
+    public String toString(){
+        return firstName + " " + lastName;
     }
 
     public String getFirstName () {
