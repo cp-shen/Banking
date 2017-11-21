@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.client.LoginDialog">
+   <children>
+      <HBox layoutX="186.0" layoutY="214.0" prefHeight="30.0" prefWidth="200.0" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="80.0" text="Login" />
+            <Button mnemonicParsing="false" onAction="#handleQuit" prefHeight="30.0" prefWidth="80.0" text="Quit" />
+         </children>
+      </HBox>
+      <GridPane layoutX="84.0" layoutY="100.0" prefHeight="74.0" prefWidth="232.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="84.0" AnchorPane.topAnchor="100.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="80.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="120.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="CustomerID" />
+            <Label text="PassWord" GridPane.rowIndex="1" />
+            <TextField fx:id="idField" GridPane.columnIndex="1" />
+            <PasswordField fx:id="pwField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label contentDisplay="TOP" layoutX="78.0" layoutY="54.0" text="Welcome to Bank of BJTU" textAlignment="CENTER" AnchorPane.topAnchor="54.0">
+         <font>
+            <Font name="MS UI Gothic" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorLabel" layoutX="171.0" layoutY="185.0" textFill="#f52b2b" />
+   </children>
+</AnchorPane>

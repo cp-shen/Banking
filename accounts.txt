@@ -1,6 +1,0 @@
-#LastName	FirstName	SavingsAccount				CheckingAccount				overdraftProtection
- Simms		Jane			500.00					200.00						400.00
- Bryant		Owen 			null 					200.00						0.0
- Soley 		Tim 			1500.00 				200.00						0.0
- Soley		Maria 			150.00 					null
- 
